@@ -1,0 +1,9 @@
+{
+    "name": "loyalty-system",
+    "scripts": {
+      "start": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
+      "build": "cd client && npm run build",
+      "server": "cd server && npm run dev",
+      "client": "cd client && npm start"
+    }
+  }

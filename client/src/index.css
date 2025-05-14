@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --body-body-2-font-family: "Inter", Helvetica;
+  --body-body-2-font-size: 14px;
+  --body-body-2-font-style: normal;
+  --body-body-2-font-weight: 400;
+  --body-body-2-letter-spacing: 0px;
+  --body-body-2-line-height: 24px;
+  --body-body-3-font-family: "Inter", Helvetica;
+  --body-body-3-font-size: 12px;
+  --body-body-3-font-style: normal;
+  --body-body-3-font-weight: 400;
+  --body-body-3-letter-spacing: 0px;
+  --body-body-3-line-height: 20px;
+  --form-input-value-font-family: "Inter", Helvetica;
+  --form-input-value-font-size: 16px;
+  --form-input-value-font-style: normal;
+  --form-input-value-font-weight: 400;
+  --form-input-value-letter-spacing: 0px;
+  --form-input-value-line-height: 24px;
+  --gray-00: rgba(255, 255, 255, 1);
+  --gray-200: rgba(213, 217, 231, 1);
+  --gray-400: rgba(139, 148, 178, 1);
+  --gray-50: rgba(247, 248, 250, 1);
+  --gray-500: rgba(108, 117, 148, 1);
+  --gray-600: rgba(56, 71, 123, 1);
+  --gray-800: rgba(18, 36, 96, 1);
+  --gray-900: rgba(0, 18, 70, 1);
+  --headline-7-font-family: "Inter", Helvetica;
+  --headline-7-font-size: 18px;
+  --headline-7-font-style: normal;
+  --headline-7-font-weight: 700;
+  --headline-7-letter-spacing: 0px;
+  --headline-7-line-height: 32px;
+  --headline-headline-3-font-family: "Inter", Helvetica;
+  --headline-headline-3-font-size: 36px;
+  --headline-headline-3-font-style: normal;
+  --headline-headline-3-font-weight: 700;
+  --headline-headline-3-letter-spacing: 0px;
+  --headline-headline-3-line-height: 48px;
+  --headline-headline-4-font-family: "Inter", Helvetica;
+  --headline-headline-4-font-size: 28px;
+  --headline-headline-4-font-style: normal;
+  --headline-headline-4-font-weight: 700;
+  --headline-headline-4-letter-spacing: 0px;
+  --headline-headline-4-line-height: 40px;
+  --headline-headline-6-font-family: "Inter", Helvetica;
+  --headline-headline-6-font-size: 16px;
+  --headline-headline-6-font-style: normal;
+  --headline-headline-6-font-weight: 700;
+  --headline-headline-6-letter-spacing: 0px;
+  --headline-headline-6-line-height: 24px;
+  --subhead-subhead-1-font-family: "Inter", Helvetica;
+  --subhead-subhead-1-font-size: 18px;
+  --subhead-subhead-1-font-style: normal;
+  --subhead-subhead-1-font-weight: 500;
+  --subhead-subhead-1-letter-spacing: 0px;
+  --subhead-subhead-1-line-height: 32px;
+  --subhead-subhead-2-font-family: "Inter", Helvetica;
+  --subhead-subhead-2-font-size: 16px;
+  --subhead-subhead-2-font-style: normal;
+  --subhead-subhead-2-font-weight: 500;
+  --subhead-subhead-2-letter-spacing: 0px;
+  --subhead-subhead-2-line-height: 24px;
+  --subhead-subhead-4-font-family: "Inter", Helvetica;
+  --subhead-subhead-4-font-size: 14px;
+  --subhead-subhead-4-font-style: normal;
+  --subhead-subhead-4-font-weight: 600;
+  --subhead-subhead-4-letter-spacing: 0.28px;
+  --subhead-subhead-4-line-height: 24px;
+  --voucherifyinfowarningalert: rgba(217, 83, 79, 1);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --card: transparent;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --card: transparent;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
