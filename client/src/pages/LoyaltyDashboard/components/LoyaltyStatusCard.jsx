@@ -1,33 +1,33 @@
-// LoyaltyStatusCard.jsx
 import React from "react";
-import { Link } from "react-router-dom";
 
-const LoyaltyStatusCard = ({
-  currentPoints = 0,
-  nextLevelPoints = 200,
-  nextLevel = "Стандарт",
+const LoyaltyStatusCard = ({ 
+  lifetimePoints = 0, 
+  nextLevel = {}, 
+  currentLevel = 'BASE' 
 }) => {
-  const progress = (currentPoints / 800) * 100;
+  const levels = [
+    { name: 'BASE', displayName: 'Базовый', threshold: 0 },
+    { name: 'STANDARD', displayName: 'Стандарт', threshold: 200 },
+    { name: 'PREMIUM', displayName: 'Премиум', threshold: 500 },
+    { name: 'VIP', displayName: 'VIP', threshold: 800 }
+  ];
+
+  const currentLevelConfig = levels.find(l => l.name === currentLevel) || levels[0];
+  const progress = Math.min((lifetimePoints / 800) * 100, 100);
 
   return (
     <article className="flex flex-col p-4 lg:p-6 w-full rounded-xl border border-gray-200 bg-white shadow-sm">
       <div className="flex flex-wrap gap-4 items-center justify-between">
-        <h2 className="text-lg font-bold text-sky-950">СТАТУСЫ</h2>
-        
-        <div className="flex flex-wrap gap-3">
-          {['Стандарт', 'Премиум', 'VIP'].map((status, index) => (
-            <div key={status} className="flex items-center gap-2">
-          
-              <span className="text-sm font-bold text-sky-950">* {status}</span>
-            </div>
-          ))}
-        </div>
+        <h2 className="text-lg font-bold text-sky-950">Ваш текущий статус</h2>
+        <span className="text-lg font-semibold text-blue-600">
+          {currentLevelConfig.displayName}
+        </span>
       </div>
 
       <div className="mt-6 w-full">
         <div className="flex justify-between text-sm text-gray-600 mb-2">
-          {[0, 200, 500, 800].map((point, i) => (
-            <span key={i}>{point}</span>
+          {levels.map(level => (
+            <span key={level.threshold}>{level.threshold}</span>
           ))}
         </div>
         
@@ -39,10 +39,16 @@ const LoyaltyStatusCard = ({
         </div>
 
         <div className="mt-4 text-sm text-gray-700">
-          <span className="font-semibold text-blue-600">
-            Заработайте еще {nextLevelPoints} баллов
-          </span>
-          {' '}для получения статуса <strong>{nextLevel}</strong>
+          {currentLevel === 'VIP' ? (
+            <span>Вы достигли максимального статуса</span>
+          ) : (
+            <>
+              <span className="font-semibold text-blue-600">
+                До {levels[levels.findIndex(l => l.name === currentLevel) + 1]?.displayName || 'VIP'}: 
+                {' '}{nextLevel.requiredPoints || 0} баллов
+              </span>
+            </>
+          )}
         </div>
       </div>
     </article>

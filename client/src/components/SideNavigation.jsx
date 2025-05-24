@@ -1,8 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SideNavigation = ({ activePage = "promotions" }) => {
-
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    if (window.confirm("Вы уверены, что хотите выйти?")) {
+      localStorage.removeItem("token");
+      navigate("/login");
+      setIsMobileMenuOpen(false);
+    }
+  
+  };
 
   const navItems = [
     {
@@ -85,7 +95,14 @@ const SideNavigation = ({ activePage = "promotions" }) => {
       path: "/payment",
       indent: false,
     },
-    { id: "logout", label: "Выйти", path: "#", indent: false, isButton: true },
+    { 
+      id: "logout", 
+      label: "Выйти", 
+      path: "#", 
+      indent: false, 
+      isButton: true,
+      onClick: handleLogout
+    },,
   ];
 
   return (
@@ -143,7 +160,8 @@ const SideNavigation = ({ activePage = "promotions" }) => {
               {item.isButton ? (
                 <button className={`w-full text-left ${
                   item.isBold ? 'font-semibold' : 'font-medium'
-                } text-gray-700 hover:text-blue-600`}>
+                } text-gray-700 hover:text-blue-600`}
+                onClick={item.onClick}>
                   {item.label}
                 </button>
               ) : (

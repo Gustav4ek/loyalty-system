@@ -1,87 +1,70 @@
+import { useEffect, useState } from 'react';
+import api from '../../../api/axios';
+
 export default function PointsHistoryContainer() {
-    const activities = [
-      { 
-        type: 'up',
-        description: 'Минск - Гомель',
-        points: '+30 баллов',
-        date: '05/04/2025'
-      },
-      { 
-        type: 'down',
-        description: '30% скидка от стоимости билета',
-        points: '-30 баллов',
-        date: '01/04/2025'
-      },
-      { 
-        type: 'up',
-        description: 'Брест - Витебск',
-        points: '+54 балла',
-        date: '27/03/2025'
-      },
-      { 
-        type: 'up',
-        description: 'Минск - Полоцк',
-        points: '+39 баллов',
-        date: '17/03/2025'
-      },
-    ];
-  
-    return (
-      <div className="max-w-4xl mx-auto p-6 font-sans">
-        {/* Заголовки с баллами */}
-        <div className="flex flex-wrap gap-8 mb-8">
-          <div className="flex-1 min-w-[200px]">
-            <h1 className="text-5xl font-bold text-blue-600">217</h1>
-            <p className="text-lg text-gray-600">ДОСТУПНЫЕ БАЛЛЫ</p>
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+        const response = await api.get('/api/points/history');
+        console.log(response);
+        // Фильтруем только операции связанные с поездками
+        const tripOperations = response.data.filter(record => 
+          record.description.includes('поездку') || 
+          record.description.includes('заказ')
+        );
+        setHistory(tripOperations);
+      } catch (error) {
+        console.error('Ошибка:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <div className="text-center p-6">Загрузка истории операций...</div>;
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 font-sans">
+      <div className="bg-white rounded-xl p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold mb-6">История операций по поездкам</h2>
+        
+        {history.length === 0 ? (
+          <div className="text-center py-6 text-gray-500">
+            Нет данных об операциях
           </div>
-          
-          <div className="flex-1 min-w-[200px]">
-            <h1 className="text-5xl font-bold text-gray-800">4</h1>
-            <p className="text-lg text-gray-600">КОЛИЧЕСТВО ПОЕЗДОК</p>
+        ) : (
+          <div className="divide-y divide-gray-100">
+            {history.map(record => (
+              <div key={record.id} className="py-3 flex items-center justify-between hover:bg-gray-50">
+                <div className="flex-1">
+                  <p className="font-medium text-gray-800">
+                    {record.description}
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {new Date(record.createdAt).toLocaleDateString('ru-RU', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </p>
+                </div>
+                <span className={`ml-4 font-semibold text-lg ${
+                  record.type === 'ACCRUAL' ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {record.type === 'ACCRUAL' ? '+' : '-'}{record.amount}
+                </span>
+              </div>
+            ))}
           </div>
-        </div>
-  
-        <hr className="my-8 border-t-2 border-gray-200" />
-  
-        {/* История активностей */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-            История активностей (4)
-          </h2>
-  
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <tbody>
-                {activities.map((activity, index) => (
-                  <tr 
-                    key={index}
-                    className="hover:bg-gray-50 even:bg-gray-50"
-                  >
-                    <td className="p-3 border-b border-gray-100">
-                      <span className={`text-xl ${
-                        activity.type === 'up' ? 'text-green-500' : 'text-red-500'
-                      }`}>
-                        {activity.type === 'up' ? '↑' : '↓'}
-                      </span>
-                    </td>
-                    
-                    <td className="p-3 border-b border-gray-100 font-medium">
-                      {activity.description}
-                    </td>
-                    
-                    <td className="p-3 border-b border-gray-100 font-semibold">
-                      {activity.points}
-                    </td>
-                    
-                    <td className="p-3 border-b border-gray-100 text-gray-500">
-                      {activity.date}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
+}
