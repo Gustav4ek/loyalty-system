@@ -14,7 +14,8 @@ export default function PointsHistoryContainer() {
         // Фильтруем только операции связанные с поездками
         const tripOperations = response.data.filter(record => 
           record.description.includes('поездку') || 
-          record.description.includes('заказ')
+          record.description.includes('заказ') ||
+          record.description.includes('Достижение')
         );
         setHistory(tripOperations);
       } catch (error) {

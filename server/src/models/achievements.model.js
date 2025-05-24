@@ -37,11 +37,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Achievement.associate = models => {
+    Achievement.hasMany(models.UserAchievement, {
+      foreignKey: 'achievementId',
+      as: 'userProgress'    // можно использовать то же имя, что и для belongsToMany
+    });
     Achievement.belongsToMany(models.User, {
       through: models.UserAchievement,
       foreignKey: 'achievementId',
       otherKey: 'userId',
-      as: 'userProgress'
+      as: 'users'
     });
   };
 

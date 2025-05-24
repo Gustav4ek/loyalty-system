@@ -4,6 +4,7 @@ const db = require('../models/models');
 const { Order, User } = db;
 const LoyaltyService = require('../services/loyalty.service')
 const AchievementService = require('../services/achievements.service');
+
 // Вспомогательная функция для расчета баллов
 const calculatePoints = (order) => {
   let basePoints = order.distance * 0.1;
@@ -146,7 +147,8 @@ exports.createOrder = async (req, res) => {
     await transaction.commit();
 
     await AchievementService.checkTripAchievements(user.id, order);
-
+    await AchievementService.checkMonthlyAchievement(user.id);
+    await AchievementService.checkRoutesAchievement(user.id);
     res.status(201).json({ 
       ...order.toJSON(),
       bonuses,
