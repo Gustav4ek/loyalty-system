@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from "../../api/axios";
 
 const PartnerPage = () => {
   const [code, setCode] = useState('');
@@ -10,16 +10,12 @@ const PartnerPage = () => {
     if (!code) return;
     setIsLoading(true);
     try {
-      const res = await axios.post('/api/coupons/check', { code }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      setResult({ type: 'success', message: '✅ Купон действителен и успешно активирован!' });
+      const res = await api.post('/api/coupons/check', { code });
+      setResult({ type: 'success', message: 'Купон действителен и успешно активирован!' });
     } catch (err) {
       setResult({ 
         type: 'error', 
-        message: err.response?.data?.error || '❌ Ошибка проверки купона' 
+        message: err.response?.data?.error || ' Ошибка проверки купона' 
       });
     } finally {
       setIsLoading(false);
@@ -45,7 +41,7 @@ const PartnerPage = () => {
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="XXXX-XXXX-XXXX"
+                placeholder="Введите код купона"
               />
             </div>
 

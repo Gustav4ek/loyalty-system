@@ -60,7 +60,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         field: 'lastBirthdayBonus',
         defaultValue: null
-      }
+      },
+      referralCode: { type: DataTypes.STRING, unique: true, allowNull: false },
+    referredById: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
+    },
   }, {
     hooks: {
         beforeCreate: async (user) => {
@@ -93,6 +102,8 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'achievementId',
       as: 'achievementProgress'
     });
+    User.belongsTo(models.User, { as: 'referredBy', foreignKey: 'referredById' });
+    User.hasMany(models.User, { as: 'referrals', foreignKey: 'referredById' });
   };
 
 

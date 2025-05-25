@@ -24,9 +24,8 @@ const sequelize = new Sequelize(
   }
 );
 
-// Проверка подключения
 sequelize.authenticate()
-  .then(() => console.log('✅ Database connection established'))
-  .catch(err => console.error('❌ Database connection error:', err));
+  .then(() => console.log('Database connection established'))
+  .catch(err => console.error('Database connection error:', err));
 
 module.exports = sequelize;

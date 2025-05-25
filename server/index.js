@@ -10,6 +10,8 @@ const loyaltyRoutes = require('./src/routes/loyalty.route')
 const { DataTypes } = require('sequelize');
 const ordersRoutes = require('./src/routes/orders.routes')
 const achievementsRoutes = require('./src/routes/achievements.routes')
+const promotionRoutes = require( './src/routes/promotion.route');
+const couponsRoutes = require('./src/routes/coupons.routes');
 require('./src/models/user.model');
 require('./src/models/achievements.model');
 require('./src/models/userAchievements.model');
@@ -44,6 +46,8 @@ app.use('/api/users', profileRoutes);
 app.use('/api/points', loyaltyRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/achievements', achievementsRoutes)
+app.use('/api/promotions', promotionRoutes)
+app.use('/api/coupons', couponsRoutes)
 
 const PORT = process.env.PORT || 5000;
 

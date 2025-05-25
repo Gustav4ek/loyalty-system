@@ -1,20 +1,16 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db.config');
+module.exports = (sequelize, DataTypes) => {
+  const Coupon = sequelize.define('Coupon', {
+    userId: { type: DataTypes.INTEGER, allowNull: false },
+    promotionId: DataTypes.INTEGER,
+    code: { type: DataTypes.STRING, unique: true },
+    status: DataTypes.ENUM('ACTIVE','USED','EXPIRED'),
+    expiryAt: DataTypes.DATE
+  });
 
-const Coupon = sequelize.define('Coupon', {
-  code: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false
-  },
-  expires_at: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  is_active: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
-  }
-});
+  Coupon.associate = models => {
+    Coupon.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+    Coupon.belongsTo(models.Promotion, { foreignKey: 'promotionId', as: 'promotion' });
+  };
 
-module.exports = Coupon;
+  return Coupon;
+};

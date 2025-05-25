@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-//const sequelize  = require('../config/db.config');
 const db = require('../models/models');
 const { sequelize, LoyaltyPoint, User } = db;
 
@@ -27,7 +26,6 @@ class LoyaltyService {
   }
     async addPoints(userId, amount, description, transaction) {
           
-          // Объявляем type здесь
           const type = amount > 0 ? 'ACCRUAL' : 'REDEMPTION';
     
           if (amount < 0) {
@@ -44,7 +42,7 @@ class LoyaltyService {
             description
           }, { transaction });
     
-          if (type === 'ACCRUAL') { // Теперь type доступен
+          if (type === 'ACCRUAL') {
             await User.increment('lifetimePoints', {
               by: Math.abs(amount),
               where: { id: userId },

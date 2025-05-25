@@ -35,7 +35,6 @@ export default function AchievementsContainer() {
               }`}
             >
               <div className="flex justify-between items-start">
-  {/* ИКОНКА */}
   <img
     src={achievement.icon}
     alt={`${achievement.title} icon`}

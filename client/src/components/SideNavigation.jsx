@@ -107,7 +107,6 @@ const SideNavigation = ({ activePage = "promotions" }) => {
 
   return (
     <>
-      {/* Мобильное меню - кнопка */}
       <button
         className="md:hidden fixed right-4 bottom-4 z-20 p-3 bg-blue-600 text-white rounded-full shadow-lg"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -127,7 +126,6 @@ const SideNavigation = ({ activePage = "promotions" }) => {
         </svg>
       </button>
 
-      {/* Боковая панель */}
       <nav className={`md:block fixed md:relative md:translate-x-0 transform transition-transform duration-300 
         h-screen md:h-auto w-64 md:w-full bg-white md:bg-transparent z-10 md:z-auto shadow-lg md:shadow-none
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>

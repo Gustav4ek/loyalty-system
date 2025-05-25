@@ -40,7 +40,6 @@ router.get('/me', async (req, res) => {
   }
 });
 
-// Обновление данных профиля
 router.put('/me', 
   [
     check('birthDate').optional().isISO8601().toDate(),
@@ -104,14 +103,13 @@ router.post('/me/card',
         return res.status(404).json({ error: 'Пользователь не найден' });
       }
 
-      // Обновляем карту НА ЭКЗЕМПЛЯРЕ пользователя
       await user.update({ 
         cardNumber: req.body.cardNumber.slice(-4)
       });
 
       res.json({ 
         success: true,
-        cardNumber: user.cardNumber,  // Используем уже обновленный экземпляр
+        cardNumber: user.cardNumber,
         message: 'Карта успешно привязана'
       });
 
@@ -125,7 +123,6 @@ router.post('/me/card',
   }
 );
 
-// POST /api/users/change-password - Смена пароля
 router.post('/change-password', async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;

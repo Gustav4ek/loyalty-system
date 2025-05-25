@@ -11,8 +11,10 @@ db.Achievement = require('./achievements.model')(sequelize, Sequelize.DataTypes)
 db.UserAchievement = require('./userAchievements.model')(sequelize, Sequelize.DataTypes);
 db.LoyaltyPoint = require('./loyalty-point.model')(sequelize, Sequelize.DataTypes)
 db.Order = require('./orders.model')(sequelize, Sequelize.DataTypes)
+db.Promotion = require('./promotion.model')(sequelize, Sequelize.DataTypes)
+db.Coupon = require('./coupon.model')(sequelize, Sequelize.DataTypes)
 
-// Выполняем ассоциации
+
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

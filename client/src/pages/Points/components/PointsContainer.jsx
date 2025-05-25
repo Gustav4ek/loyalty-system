@@ -3,7 +3,6 @@ export default function PointsContainer() {
     return (
       <div className="max-w-4xl mx-auto p-6 font-sans">
   
-        {/* Таблица с баллами */}
         <div className="overflow-x-auto mb-10">
           <table className="w-full border-collapse">
             <thead>
@@ -29,41 +28,20 @@ export default function PointsContainer() {
                 points="0.14 балла/км"
                 example="Минск - Полоцк (276км) = 39 баллов"
               />
-              <TableRow
-                action="Раннее бронирование (за 30 дней)"
-                points="+20% к баллам"
-                example="30 → 36 баллов"
-              />
-              <TableRow
-                action="Непокоящее время (10:00 - 15:00)"
-                points="×1.3 к баллам"
-                example="54 → 70 баллов"
-              />
-              <TableRow
-                action="Эко-инициатива"
-                points="+5 баллов/поездка"
-                example="39 → 44 балла"
-              />
             </tbody>
           </table>
         </div>
-  
-        {/* Реферальная программа */}
+
         <SectionBlock
         iconUrl= '/icons/points/friends.png'
           title="Реферальная программа"
           content={
             <ul className="list-disc pl-5 space-y-2">
               <li>За каждого приглашенного друга = <strong>10 баллов</strong></li>
-              <li>Друг совершил первую поездку = <strong>+5 баллов</strong> вам</li>
-              <li className="bg-blue-50 p-3 rounded-lg">
-                Пример: 5 друзей = 5×10 + 5×5 = <strong>75 баллов</strong>
-              </li>
             </ul>
           }
         />
-  
-        {/* Сезонные бонусы */}
+
         <SectionBlock
           iconUrl= '/icons/points/gift.png'
           title="Сезонные бонусы"
@@ -80,7 +58,6 @@ export default function PointsContainer() {
             <img src="/icons/points/lamp.png" alt="alt.png" className="w-7 h-7"/> Советы для максимума баллов
           </h2>
           <ol className="list-decimal pl-5 space-y-3">
-            <li>Комбинируйте бонусы: раннее бронирование + непокоящее время</li>
             <li>Используйте реферальную программу для быстрого роста</li>
             <li>Следите за акциями в разделе «Спецпредложения»</li>
           </ol>

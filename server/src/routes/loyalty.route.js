@@ -85,4 +85,24 @@ router.get('/lifetime-points', async (req, res) => {
     }
   });
 
+  router.get('/referral-info', async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findByPk(userId);
+      const invitedCount = await User.count({ where: { referredById: userId } });
+  
+      const earnedPoints = invitedCount * 10;
+  
+      res.json({
+        referralCode: user.referralCode,
+        invitedCount,
+        earnedPoints
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    }
+  });
+  
+
 module.exports = router;

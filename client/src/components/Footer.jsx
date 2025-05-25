@@ -4,7 +4,6 @@ const Footer = () => {
   return (
     <footer className="flex flex-col w-full bg-slate-50 mt-20">
       <div className="flex flex-wrap justify-center px-11 py-20 max-md:px-5 gap-12 xl:gap-24">
-        {/* Логотип и форма подписки */}
         <div className="w-full md:w-auto flex flex-col items-center text-center md:text-left md:items-start">
           <a href="/" className="mb-8">
             <img
@@ -31,9 +30,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Блоки ссылок */}
+
         <div className="flex flex-col md:flex-row gap-12 xl:gap-24">
-          {/* Спецпредложения */}
+
           <div className="min-w-[200px]">
             <h2 className="text-lg font-bold text-sky-950 mb-4">
               Спецпредложения
@@ -46,7 +45,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* О нас */}
+
           <div className="min-w-[200px]">
             <h2 className="text-lg font-bold text-sky-950 mb-4">
               О нас
@@ -59,7 +58,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Копирайт */}
+
       <div className="border-t border-slate-200">
         <div className="px-11 py-6 text-center">
           <p className="text-xs text-slate-500">

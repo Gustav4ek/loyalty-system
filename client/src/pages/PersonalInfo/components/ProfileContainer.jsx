@@ -49,7 +49,6 @@ export default function ProfileContainer() {
     e.preventDefault();
     
     try {
-      // Валидация даты рождения
       if (profile.birthDate) {
         const birthDate = new Date(profile.birthDate);
         const today = new Date();
@@ -60,7 +59,6 @@ export default function ProfileContainer() {
         }
       }
 
-      // Подготовка данных для отправки
       const dataToSend = {
         ...profile,
         birthDate: profile.birthDate 
@@ -91,14 +89,11 @@ export default function ProfileContainer() {
         newPassword: passwordData.newPassword
       });
       
-      // Очищаем данные
       localStorage.removeItem('token');
       setPasswordData({ oldPassword: '', newPassword: '', confirmPassword: '' });
       
-      // Перенаправляем с заменой истории
       navigate('/login', { replace: true });
       
-      // Можно добавить уведомление
       alert('Пароль успешно изменен. Пожалуйста, войдите снова.');
   
     } catch (error) {
@@ -108,7 +103,6 @@ export default function ProfileContainer() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 font-sans">
-      {/* Форма персональных данных */}
       <form onSubmit={handleProfileSubmit}>
         <div className="space-y-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -212,7 +206,6 @@ export default function ProfileContainer() {
   />
           </div>
 
-          {/* Добавляем поле номера карты */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">
               Привязанная карта
@@ -237,7 +230,6 @@ export default function ProfileContainer() {
 
       <hr className="my-8 border-t" />
 
-      {/* Форма смены пароля */}
       <form onSubmit={handlePasswordSubmit} className="mt-8">
         <h2 className="text-xl font-semibold mb-6">Изменение пароля</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">

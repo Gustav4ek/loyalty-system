@@ -6,7 +6,7 @@ export const achievements = [
       progress: "1/1",
       isCompleted: true,
       icon: '/icons/achievements/railway.png',
-      points: 50 // Добавлено
+      points: 50
     },
     { 
       title: "Эксперт купе",
@@ -15,7 +15,7 @@ export const achievements = [
       progress: "0/10",
       isCompleted: false,
       icon: '/icons/achievements/train.png',
-      points: 100 // Добавлено
+      points: 100
     },
     
     { 
@@ -25,7 +25,7 @@ export const achievements = [
       progress: "0/5",
       isCompleted: false,
       icon: '/icons/achievements/train-ticket.png',
-      points: 90 // Добавлено
+      points: 90
     },
     { 
       title: "Дружественный состав",
@@ -34,7 +34,7 @@ export const achievements = [
       progress: "0/3",
       isCompleted: false,
       icon: '/icons/achievements/friends.png',
-      points: 60 // Добавлено
+      points: 60
     },
     { 
       title: "Исследователь БЧ",
@@ -43,6 +43,6 @@ export const achievements = [
       progress: "0/7",
       isCompleted: false,
       icon: '/icons/achievements/bench.png',
-      points: 150 // Добавлено
+      points: 150
     },
   ];

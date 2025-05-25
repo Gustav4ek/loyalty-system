@@ -24,7 +24,7 @@ const LoginForm = () => {
     } catch (err) {
       setError(err.response?.data?.error || 'Ошибка авторизации');
       setTimeout(() => {
-        setError(prev => prev); // Форсируем повторный рендер
+        setError(prev => prev);
       }, 50);
     }
   };

@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const UserAchievement = sequelize.define(
     "UserAchievement",
     {
-      // Основные поля
       progress: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
@@ -19,18 +18,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       
-      // Внешние ключи (указываются в миграции, здесь не обязательны)
+
       userId: DataTypes.INTEGER,
       achievementId: DataTypes.INTEGER,
     },
     {
-      // Опциональные настройки
-      timestamps: true, // createdAt и updatedAt добавляются автоматически
-      tableName: "UserAchievements", // Явное указание имени таблицы
+
+      timestamps: true,
+      tableName: "UserAchievements",
     }
   );
 
-  // Ассоциации (если нужны дополнительные связи)
   UserAchievement.associate = (models) => {
     UserAchievement.belongsTo(models.User, {
       foreignKey: "userId",

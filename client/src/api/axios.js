@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-// Создаем кастомный экземпляр axios
 const api = axios.create({
-  timeout: 10000, // Таймаут 10 секунд
+  timeout: 10000,
 });
-
-// Перехватчик для добавления токена в заголовки
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -26,7 +23,6 @@ api.interceptors.response.use(
         console.log('Перенаправление на логин');
         localStorage.removeItem('token');
         
-        // Мягкий редирект через React Router
         if (!window.location.pathname.includes('/login')) {
           window.location.href = '/login';
         }

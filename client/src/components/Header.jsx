@@ -7,7 +7,6 @@ import React, { useState } from "react";
       <header className="w-full bg-white shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="relative flex h-16 items-center justify-between">
-            {/* Логотип */}
             <div className="flex flex-shrink-0 items-center">
               <a href="/loyalty" className="block h-12 w-auto">
                 <img
@@ -18,7 +17,6 @@ import React, { useState } from "react";
               </a>
             </div>
   
-            {/* Десктопное меню */}
             <div className="hidden md:flex md:items-center md:space-x-8">
               <div className="flex items-center gap-2">
                 <a 
@@ -56,7 +54,6 @@ import React, { useState } from "react";
               </div>
             </div>
   
-            {/* Мобильное меню */}
             <div className="flex md:hidden">
               <button
                 type="button"
@@ -89,7 +86,6 @@ import React, { useState } from "react";
             </div>
           </nav>
   
-          {/* Выпадающее меню для мобильных */}
           {isMenuOpen && (
             <div className="md:hidden absolute w-full bg-white z-10 shadow-lg">
               <div className="px-2 pt-2 pb-3 space-y-1">
@@ -114,8 +110,7 @@ import React, { useState } from "react";
               </div>
             </div>
           )}
-  
-          {/* Заголовок страницы */}
+
           
         </div>
       </header>

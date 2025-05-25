@@ -7,7 +7,6 @@ import LoyaltyStatusCard from "./components/LoyaltyStatusCard";
 import MetricsCard from "./components/MetricsCard";
 import Footer from "../../components/Footer";
 import Loader from "../../components/Loader";
-import { achievements } from "../Achievements/components/Achievements.data";
 
 const LoyaltyDashboard = () => {
   const [loyaltyData, setLoyaltyData] = useState({
@@ -23,10 +22,13 @@ const LoyaltyDashboard = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [balanceRes, lifetimeRes] = await Promise.all([
+      const [balanceRes, lifetimeRes, achievementsRes] = await Promise.all([
         api.get('/api/points/balance'),
-        api.get('/api/points/lifetime-points')
+        api.get('/api/points/lifetime-points'),
+        api.get('/api/achievements')
       ]);
+
+      const availableRewards = achievementsRes.data.filter(a => !a.userProgress?.[0]?.isCompleted).length;
       
       setLoyaltyData({
         currentBalance: balanceRes.data.currentBalance || 0,
@@ -36,7 +38,7 @@ const LoyaltyDashboard = () => {
           requiredPoints: 200 
         },
         loyaltyLevel: balanceRes.data.loyaltyLevel || 'BASE',
-        availableRewards: Math.floor(lifetimeRes.data.points / 100) || 0
+        availableRewards
       });
       setError(null);
     } catch (err) {
@@ -86,7 +88,7 @@ const LoyaltyDashboard = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <MetricsCard
-                  value={achievements.filter(a => !a.isCompleted).length}
+                  value={loyaltyData.availableRewards}
                   label="Доступные награды"
                   iconSrc="/icons/Vector.png"
                   iconAlt="Rewards icon"

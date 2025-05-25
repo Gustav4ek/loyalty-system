@@ -4,7 +4,7 @@ export default function LoyaltyRulesContainer() {
         <h3 className="text-3xl font-bold mb-8 text-gray-800">Правила программы лояльности</h3>
   
         <div className="space-y-8">
-          {/* Раздел 1 */}
+
           <section className="border-l-4 border-blue-500 pl-4">
             <h2 className="text-xl font-semibold mb-4">1. Начисление баллов</h2>
             <div className="space-y-4">
@@ -20,7 +20,7 @@ export default function LoyaltyRulesContainer() {
             </div>
           </section>
   
-          {/* Раздел 2 */}
+
           <section className="border-l-4 border-green-500 pl-4">
             <h2 className="text-xl font-semibold mb-4">2. Уровневая система</h2>
             <p className="text-gray-600">
@@ -28,7 +28,7 @@ export default function LoyaltyRulesContainer() {
             </p>
           </section>
   
-          {/* Раздел 3 */}
+
           <section className="border-l-4 border-purple-500 pl-4">
             <h2 className="text-xl font-semibold mb-4">3. Использование баллов</h2>
             <div className="space-y-4 text-gray-600">
@@ -49,7 +49,7 @@ export default function LoyaltyRulesContainer() {
             </div>
           </section>
   
-          {/* Раздел 4 */}
+
           <section className="border-l-4 border-orange-500 pl-4">
             <h2 className="text-xl font-semibold mb-4">4. Сроки действия</h2>
             <div className="space-y-2 text-gray-600">
@@ -57,8 +57,7 @@ export default function LoyaltyRulesContainer() {
               <p>4.2. Статусы обновляются ежедневно. При невыполнении условий уровень понижается автоматически</p>
             </div>
           </section>
-  
-          {/* Раздел 5 */}
+
           <section className="border-l-4 border-pink-500 pl-4">
             <h2 className="text-xl font-semibold mb-4">5. Партнерская программа</h2>
             <div className="space-y-4 text-gray-600">

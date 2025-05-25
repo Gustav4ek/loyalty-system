@@ -11,11 +11,12 @@ export default function PointsHistoryContainer() {
         
         const response = await api.get('/api/points/history');
         console.log(response);
-        // Фильтруем только операции связанные с поездками
         const tripOperations = response.data.filter(record => 
           record.description.includes('поездку') || 
           record.description.includes('заказ') ||
-          record.description.includes('Достижение')
+          record.description.includes('Достижение') ||
+          record.description.includes('друг') ||
+          record.description.includes('купон')
         );
         setHistory(tripOperations);
       } catch (error) {
@@ -32,7 +33,7 @@ export default function PointsHistoryContainer() {
   return (
     <div className="max-w-4xl mx-auto p-6 font-sans">
       <div className="bg-white rounded-xl p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold mb-6">История операций по поездкам</h2>
+        <h2 className="text-2xl font-semibold mb-6">История операций с баллами</h2>
         
         {history.length === 0 ? (
           <div className="text-center py-6 text-gray-500">

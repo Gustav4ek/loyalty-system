@@ -87,7 +87,6 @@ export default function PaymentContainer() {
       </h1>
 
       <div className="space-y-4">
-        {/* Владелец карты */}
         <div>
           <label className="block text-base font-medium text-gray-700 mb-1">
             Владелец карты *
@@ -103,7 +102,6 @@ export default function PaymentContainer() {
           />
         </div>
 
-        {/* Номер карты */}
         <div>
           <label className="block text-base font-medium text-gray-700 mb-1">
             Номер карты *
@@ -121,7 +119,7 @@ export default function PaymentContainer() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Срок действия */}
+ 
           <div className="flex flex-col">
             <label className="text-base font-medium text-gray-700 mb-1 whitespace-nowrap">
               Срок действия (ММ/ГГ) *
@@ -138,7 +136,7 @@ export default function PaymentContainer() {
             />
           </div>
 
-          {/* CVV */}
+
           <div className="flex flex-col">
             <label className="text-base font-medium text-gray-700 mb-1">
               CVV *
@@ -156,7 +154,7 @@ export default function PaymentContainer() {
           </div>
         </div>
 
-        {/* Кнопка отправки */}
+
         <button
           type="submit"
           disabled={loading}
